@@ -1,4 +1,4 @@
 # Algorithm-Practices
 
 Language used:
-C, Python
+C, C++, Python
