@@ -9,13 +9,17 @@ int main(void){
   s = 0;
   m = 0;
 
+
+  // get inputs
   cin >> E;
   cin >> S;
   cin >> M;
 
   
+  // into the loop
+  // every loop, updated by % op.
   while(1){
-    cout<< "(" << e+1 <<","<< s+1 <<"," <<m+1 <<")" <<endl;
+    // cout<< "(" << e+1 <<","<< s+1 <<"," <<m+1 <<")" <<endl;
     if(E == e+1 && S == s+1 && M == m+1){
       break;
     } else {
