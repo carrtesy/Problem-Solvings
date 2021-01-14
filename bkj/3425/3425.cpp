@@ -3,6 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #define MAXNUM 1000000000
+#define ll long long
 
 using namespace std;
 int main(void){
@@ -10,7 +11,7 @@ int main(void){
 	while(1){
 		bool terminate = false;
 		vector <string> commands;
-		vector <int> numbers;
+		vector <ll> numbers;
 		
 		while(1){
 			string command;
@@ -20,12 +21,10 @@ int main(void){
 				terminate = true;
 				break;
 			}
-			
+		
+            commands.push_back(command);	
 			if (command == "END"){
-				commands.push_back(command);
 				break;
-			} else {
-				commands.push_back(command);
 			}
 		}
 		
@@ -33,27 +32,22 @@ int main(void){
 			break;
 		}
 		
-		int N;
+		ll N;
 		cin >> N;
-		for(int i = 0; i < N; i++){
-			int tmp;
+		for(ll i = 0; i < N; i++){
+			ll tmp;
 			cin >> tmp;
 			numbers.push_back(tmp);
 		}
 		
-		vector<int>::iterator it;
+		vector<ll>::iterator it;
 		for (it = numbers.begin(); it != numbers.end(); it++){
-			stack <int> s;
-			cout << "first el:" << *it << endl;
+			stack <ll> s;
 			s.push(*it);
 			
 			vector<string>::iterator c = commands.begin();
 			bool error = false;
 			while(1){
-				if(c == commands.end()){
-					break;
-				}
-				
 				string command  = *c;
 				if (command == "END"){
 					break;
@@ -63,7 +57,7 @@ int main(void){
 					case 'N':{
 						c++;
 						command = *c;
-						int X = atoi(command.c_str());
+						ll X = atoi(command.c_str());
 						s.push(X);
 						break;
 					}
@@ -76,7 +70,7 @@ int main(void){
 						break;
 					}
 					case 'I':{
-						int tmp;
+						ll tmp;
 						tmp = s.top();
 						s.pop();
 						s.push(-tmp);
@@ -84,25 +78,25 @@ int main(void){
 					}
 					case 'D':{
 						if(command[1] == 'U'){
-							int tmp = s.top();
+							ll tmp = s.top();
 							s.push(tmp);
 						} else if (command[1] == 'I'){
 							if (s.size() < 2) {
 								error = true;
 								break;
 							} else {
-								int n1, n2;
+								ll n1, n2;
 								n1 = s.top();
 								s.pop();
 								n2 = s.top();
 								s.pop();
-								if( n2 == 0 ){
+								if( n1 == 0 ){
 									error = true;
 									break;
 								} else {
-									int to_push;
-									to_push = (n1/abs(n1)) * (n2/abs(n2)) > 0 ? abs(n1) / abs(n2) : abs(n1) / abs(n2) * - 1;
-									s.push(to_push);	
+									ll to_push;
+                                    to_push = n1*n2>0?abs(n2)/abs(n1): -1*abs(n2)/abs(n1);
+									s.push(to_push);
 								}
 							}
 						}
@@ -113,7 +107,7 @@ int main(void){
 							error = true;
 							break;
 						} else {
-							int n1, n2;
+							ll n1, n2;
 							n1 = s.top();
 							s.pop();
 							n2 = s.top();
@@ -136,7 +130,7 @@ int main(void){
 							error = true;
 							break;
 						} else {
-							int n1, n2;
+							ll n1, n2;
 							n1 = s.top();
 							s.pop();
 							n2 = s.top();
@@ -154,17 +148,26 @@ int main(void){
 							error = true;
 							break;
 						} else {
-							int n1, n2;
+							ll n1, n2;
 							n1 = s.top();
 							s.pop();
 							n2 = s.top();
 							s.pop();
-							if( n2 == 0 ){
-								error = true;
-								break;
-							} else {
-								s.push(n1%n2);	
-							}
+                            if(command[1] == 'U'){
+							    if( abs(n1*n2) > MAXNUM ){
+								    error = true;
+								    break;
+							    } else {
+								    s.push(n1*n2);	
+							    }
+                            } else if(command[1] == 'O'){
+							    if( n1 == 0 ){
+								    error = true;
+								    break;
+							    } else {
+								    s.push(n2%n1);	
+							    }
+                            }
 						}
 						break;
 					}
@@ -183,7 +186,8 @@ int main(void){
 				cout << s.top() << endl;
 			}
 		}
-		
+	
+        cout << endl;	
 	}
 	
 }
