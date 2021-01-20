@@ -1,0 +1,10 @@
+NUM -12
+NUM 4
+SWP
+DIV
+ADD
+END
+1
+-2
+
+QUIT

@@ -1,0 +1,11 @@
+MUL
+END
+1
+3
+
+SUB
+END
+1
+3
+
+QUIT
