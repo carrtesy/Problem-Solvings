@@ -1,111 +1,106 @@
-#include <iostream>
-#include <unistd.h>
-
+#include <bits/stdc++.h>
 #define ll long long
 
 using namespace std;
-class SegmentTree{
+
+class SegmentTree {
 public:
-    int N;
     int S;
     ll* tree;
-    ll* data;
 
-    SegmentTree(ll* arr, int n, int s){
-        N = n;
-        S = s;
-        data = arr;
-        tree = new ll[2*s];
+    SegmentTree(ll* data, int N){
+        S = 1;
+        while(S < N) S <<= 1;
+        tree = new ll[2*S];
+        memset(tree, 0, sizeof(ll) * 2 * S);
+        for(int i = 0; i < N; i++) tree[S+i] = data[i];
+
+        for(int i = S-1; i > 0; i--) {
+            tree[i] = tree[i*2] + tree[i*2+1];
+        }
     }
 
     void printTree(){
-        int power = 0;
-
-        for(int i = 1; i < 2*S; i++){
-            cout << tree[i] << ' ';
-        }
-        cout << endl;
-    }
-
-    ll makeTree(int node, int left, int right){
-        // leaf?
-        if(left == right){
-            if(left <= N){
-                tree[node] = data[left];
-            } else {
-                tree[node] = 0;
+        int idx = 1;
+        int range = 1;
+        while(1){
+            for(int i = idx; i < idx + range; i++){
+                cout << tree[i] << ' ';
             }
-            return tree[node];
+            cout << '\n';
+            
+            if(idx + range >= 2 * S){
+                break;
+            }
+            
+            idx += range;
+            range <<= 1;
         }
-        
-        int mid = (left + right) / 2;
-        tree[node] = makeTree(node * 2, left, mid);
-        tree[node] += makeTree(node *2 + 1, mid+1, right);
-        
-        return tree[node];
-        
     }
-
-    ll query(int node, int left, int right, int qLeft, int qRight){
-        // outside query
-        if(qRight < left || right < qLeft){
+ 
+    ll query(int node, int left, int right, int qleft, int qright){
+        // out of range
+        if(right < qleft || qright < left){
             return 0;
         }
-        // inside query
-        else if(qLeft <= left && right <= qRight){
+        // in the range
+        else if(qleft <= left && right <= qright){
             return tree[node];
         }
-        // in and out
+
+        // on the edge
         else{
-            int mid = (left + right)/2;
-            return query(node * 2, left, mid, qLeft, qRight) +
-            query(node*2+1, mid+1, right, qLeft, qRight);
+            int mid = (left + right) / 2;
+            ll leftquery = query(node * 2, left, mid, qleft, qright);
+            ll rightquery = query(node * 2 + 1, mid+1, right, qleft, qright);
+            return leftquery + rightquery;
         }
-    }
+        
+    } 
 
-    void update(int index, ll value){
-        int cur = S+index-1;
-        tree[S+index-1] = value;
-
-        while(cur > 1){
-            int par = cur/2;
-            tree[par] = tree[par*2] + tree[par*2+1];
-            cur = par; 
+    void update(int node, int left, int right, int K, ll value){
+        if(node == S+K-1){
+            tree[node] = value; 
         }
-         
+
+        else if(right < K || K < left){
+            return;
+        }
+
+        else{
+            int mid = (left + right) / 2;
+            update(node * 2, left, mid, K, value);
+            update(node * 2 + 1, mid+1, right, K, value);
+            tree[node] = tree[node*2] + tree[node*2+1];
+        }
+      
     }
+    
 };
 
-
-using namespace std;
 int main(void){
-    int N, M, K;
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
+    int N, M, K;
     cin >> N >> M >> K;
     
-    ll * nums = new ll[N+1];
-    for(int i = 1; i <= N; i++){
-        cin >> nums[i];
-    }
+    ll* data = new ll[N];
+    for(int i = 0; i < N; i++) cin >> data[i];
 
-    int s = 1;
-    while (s < N) s <<= 1;
-    
-    SegmentTree st(nums, N, s);
-    st.makeTree(1, 1, s);
+    SegmentTree st = SegmentTree(data, N);
 
     while(M+K){
-        int command, a, b;
-        cin >> command >> a >> b;
-
-        if(command == 1){
-            st.update(a, b);
-            M--;
-        } else {
-            ll q = st.query(1, 1, s, a, b);
-            cout << q << '\n';
+        int a, b;
+        ll c;
+        cin >> a >> b >> c;
+        if(a == 1){
+            st.update(1, 1, st.S, b, c);
+            M--;   
+        } else if(a == 2){
+            printf("%lld\n", st.query(1, 1, st.S, b, c));
             K--;
         }
     }
+    
 }
