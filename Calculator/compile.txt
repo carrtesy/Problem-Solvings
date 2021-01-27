@@ -1,0 +1,2 @@
+g++ -g -o calc Calculator.cpp
+gdb ./calc
