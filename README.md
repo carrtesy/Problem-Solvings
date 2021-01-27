@@ -1,6 +1,9 @@
 # MY Problem Solvings
 ## Basis of Problem Solving Skills
 
+### Class Comparision & Sorting [template](https://github.com/dongminkim0220/Problem-Solvings/blob/master/templates/cpp/class_comp_sorting.cpp)
+- https://www.acmicpc.net/problem/11650
+
 ### DFS/BFS [template](https://github.com/dongminkim0220/Problem-Solvings/blob/master/templates/cpp/dfs_bfs.cpp)
 - https://www.acmicpc.net/problem/1260
 
