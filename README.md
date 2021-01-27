@@ -18,6 +18,9 @@
 - bkj: https://www.acmicpc.net/problem/2098
 
 ## PS LOGS
+### 2020-01-27
+- class comparsion and sorting: https://www.acmicpc.net/problem/11650
+
 ### 2020-01-26
 - union-find: https://www.acmicpc.net/problem/1717
 
