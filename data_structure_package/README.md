@@ -1,4 +1,4 @@
-# Data Structure Package in C
+# Data Structure Package in C / CPP
 
 compile
 ```
@@ -13,7 +13,7 @@ execute
 ## LINKS
 - [Stack][s]
 - [Queue][q] : On working
-
+- [Deque][d]
 
 ## Execution Result
 - stack
@@ -71,6 +71,6 @@ Let's Try poping for empty stack.
 Stack is now empty. Nothing left to pop. exit.
 ```
 
-[s]: https://github.com/dongminkim0220/data_structure_package/blob/master/stack.c
-[q]: https://github.com/dongminkim0220/data_structure_package/blob/master/queue.c
-
+[s]: https://github.com/dongminkim0220/Problem-Solvings/blob/master/data_structure_package/stack.c
+[q]: https://github.com/dongminkim0220/Problem-Solvings/blob/master/data_structure_package/queue.c
+[d]: https://github.com/dongminkim0220/Problem-Solvings/blob/master/data_structure_package/deque.cpp
