@@ -1,0 +1,21 @@
+20
+push_front 1
+push_front 2
+push_front 3
+push_front 4
+push_front 5
+push_front 6
+push_front 7
+push_front 8
+push_front 9
+push_front 10
+push_front 11
+push_front 12
+push_front 13
+push_front 14
+push_front 15
+size
+pop_back
+pop_back
+back
+size
