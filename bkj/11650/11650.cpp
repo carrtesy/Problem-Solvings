@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <algorithm>
 
@@ -18,16 +19,14 @@ public:
         y = _y;
     }
 
-    friend bool operator<(coord &c1, coord&c2);
-};
-
-bool operator< (coord &c1, coord &c2){
-    if(c1.x == c2.x){
-        return c1.y < c2.y;
-    } else {
-        return c1.x < c2.x;
+    bool operator<(coord c) const{
+        if(x == c.x){
+            return y < c.y;
+        } else{
+            return x < c.x;
+        }
     }
-}
+};
 
 int main(void){
     ios_base::sync_with_stdio(false);
