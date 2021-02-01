@@ -13,6 +13,8 @@
 ### Union-find [template](https://github.com/dongminkim0220/Problem-Solvings/blob/master/templates/cpp/union_find.cpp)
 - https://www.acmicpc.net/problem/1717
 
+### Dijkstra [template](https://github.com/dongminkim0220/Problem-Solvings/blob/master/templates/cpp/dijkstra.cpp)
+- https://www.acmicpc.net/problem/1753
 
 ### TSP Problem
 - bkj: https://www.acmicpc.net/problem/2098
@@ -23,8 +25,11 @@
 ### Deque [source](https://github.com/dongminkim0220/Problem-Solvings/blob/master/data_structure_package/deque.cpp)
 - https://www.acmicpc.net/problem/10866
 
-
 ## PS LOGS
+
+### 2020-02-01
+- dijkstra: https://www.acmicpc.net/problem/1753
+
 ### 2020-01-30
 - deque implementation: https://www.acmicpc.net/problem/10866
 
