@@ -16,6 +16,9 @@
 ### Dijkstra [template](https://github.com/dongminkim0220/Problem-Solvings/blob/master/templates/cpp/dijkstra.cpp)
 - https://www.acmicpc.net/problem/1753
 
+### MST [template](https://github.com/dongminkim0220/Problem-Solvings/blob/master/templates/cpp/MST.cpp)
+- https://www.acmicpc.net/problem/1922
+
 ### TSP Problem
 - bkj: https://www.acmicpc.net/problem/2098
 
